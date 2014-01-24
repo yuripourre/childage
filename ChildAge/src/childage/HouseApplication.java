@@ -6,6 +6,11 @@ import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.video.Graphic;
+import br.com.tide.input.controller.EasyController;
+import br.com.tide.input.controller.FirstPlayerController;
+import br.com.tide.input.controller.JoystickOneController;
+import childage.players.OldMan;
+import childage.players.YoungMan;
 import childage.tiles.Floor;
 
 
@@ -14,7 +19,11 @@ public class HouseApplication extends Application{
 	private Floor[][] floor;
 
 	private final int floorWidth = 25;
-	private final int floorHeight = 18;	
+	private final int floorHeight = 18;
+	
+	private OldMan oldMan;
+	
+	private YoungMan youngMan;
 
 	public HouseApplication(int w, int h) {
 		super(w, h);
@@ -34,8 +43,25 @@ public class HouseApplication extends Application{
 			}
 			
 		}
+		
+		oldMan = new OldMan(30,80);
+		//oldMan.setController(new EasyController());
+		oldMan.setController(new JoystickOneController());
+		
+		youngMan = new YoungMan(530,80);
+		youngMan.setController(new FirstPlayerController());
 
+		updateAtFixedRate(20);
+		
 		loading = 100;
+	}
+	
+	public void timeUpdate(long now){
+		
+		oldMan.update(now);
+		
+		youngMan.update(now);		
+		
 	}
 
 	@Override
@@ -45,6 +71,13 @@ public class HouseApplication extends Application{
 		
 		drawTiles(g);
 		
+		drawPlayers(g);
+		
+	}
+	
+	private void drawPlayers(Graphic g){
+		oldMan.draw(g);
+		youngMan.draw(g);
 	}
 	
 	private void drawTiles(Graphic g){
@@ -71,6 +104,11 @@ public class HouseApplication extends Application{
 
 	@Override
 	public GUIEvent updateKeyboard(KeyEvent event) {
+		
+		oldMan.handleEvent(event);
+		
+		youngMan.handleEvent(event);
+		
 		// TODO Auto-generated method stub
 		return null;
 	}		

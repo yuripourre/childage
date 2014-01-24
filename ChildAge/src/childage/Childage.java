@@ -1,6 +1,7 @@
 package childage;
 
 import br.com.etyllica.EtyllicaFrame;
+import br.com.etyllica.core.loader.JoystickLoader;
 
 public class Childage extends EtyllicaFrame {
 	
@@ -15,6 +16,10 @@ public class Childage extends EtyllicaFrame {
 
 	@Override
 	public void startGame() {
+		
+		addLoader(JoystickLoader.getInstance());
+		JoystickLoader.getInstance().start();
+		
 		
 		setMainApplication(new HouseApplication(w,h));
 		

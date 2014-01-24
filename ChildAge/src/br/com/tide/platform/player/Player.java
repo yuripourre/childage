@@ -39,13 +39,13 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 	}
 
 	public void update(long now) {
-
+		
 		if(isBeignHit()){
 			if(now-wasHit>hitDelay){
 				this.stand();
 			}
 		}
-
+		
 	}
 	
 	public void die(){
