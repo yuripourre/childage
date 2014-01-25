@@ -7,13 +7,21 @@ public class EasyController extends Controller{
 	public EasyController(){
 		super();
 		
-		upButton = KeyEvent.TSK_UP_ARROW;
+		upButtonDown = KeyEvent.TSK_UP_ARROW;
 		
-		downButton = KeyEvent.TSK_DOWN_ARROW;
+		upButtonUp = KeyEvent.TSK_UP_ARROW;
 		
-		leftButton = KeyEvent.TSK_LEFT_ARROW;
+		downButtonDown = KeyEvent.TSK_DOWN_ARROW;
 		
-		rightButton = KeyEvent.TSK_RIGHT_ARROW;
+		downButtonUp = KeyEvent.TSK_DOWN_ARROW;
+		
+		leftButtonDown = KeyEvent.TSK_LEFT_ARROW;
+		
+		leftButtonUp = KeyEvent.TSK_LEFT_ARROW;
+		
+		rightButtonDown = KeyEvent.TSK_RIGHT_ARROW;
+		
+		rightButtonUp = KeyEvent.TSK_RIGHT_ARROW;
 		
 		ButtonA = KeyEvent.TSK_Z;
 		

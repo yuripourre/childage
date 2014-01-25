@@ -4,13 +4,21 @@ import br.com.etyllica.core.event.KeyEvent;
 
 public class Controller {
 
-	protected int upButton = KeyEvent.TSK_UP_ARROW;
+	protected int upButtonDown = KeyEvent.TSK_UP_ARROW;
 	
-	protected int downButton = KeyEvent.TSK_DOWN_ARROW;
+	protected int downButtonDown = KeyEvent.TSK_DOWN_ARROW;
 	
-	protected int leftButton = KeyEvent.TSK_LEFT_ARROW;
+	protected int leftButtonDown = KeyEvent.TSK_LEFT_ARROW;
 	
-	protected int rightButton = KeyEvent.TSK_RIGHT_ARROW;
+	protected int rightButtonDown = KeyEvent.TSK_RIGHT_ARROW;
+	
+	protected int upButtonUp = KeyEvent.TSK_UP_ARROW;
+	
+	protected int downButtonUp = KeyEvent.TSK_DOWN_ARROW;
+	
+	protected int leftButtonUp = KeyEvent.TSK_LEFT_ARROW;
+	
+	protected int rightButtonUp = KeyEvent.TSK_RIGHT_ARROW;
 	
 	protected int ButtonA = KeyEvent.TSK_Z;
 	
@@ -23,37 +31,69 @@ public class Controller {
 	public Controller(){
 		super();
 	}
-
-	public int getUpButton() {
-		return upButton;
+	
+	public int getUpButtonDown() {
+		return upButtonDown;
 	}
 
-	public void setUpButton(int upButton) {
-		this.upButton = upButton;
+	public void setUpButtonDown(int upButtonDown) {
+		this.upButtonDown = upButtonDown;
 	}
 
-	public int getDownButton() {
-		return downButton;
+	public int getDownButtonDown() {
+		return downButtonDown;
 	}
 
-	public void setDownButton(int downButton) {
-		this.downButton = downButton;
+	public void setDownButtonDown(int downButtonDown) {
+		this.downButtonDown = downButtonDown;
 	}
 
-	public int getLeftButton() {
-		return leftButton;
+	public int getLeftButtonDown() {
+		return leftButtonDown;
 	}
 
-	public void setLeftButton(int leftButton) {
-		this.leftButton = leftButton;
+	public void setLeftButtonDown(int leftButtonDown) {
+		this.leftButtonDown = leftButtonDown;
 	}
 
-	public int getRightButton() {
-		return rightButton;
+	public int getRightButtonDown() {
+		return rightButtonDown;
 	}
 
-	public void setRightButton(int rightButton) {
-		this.rightButton = rightButton;
+	public void setRightButtonDown(int rightButtonDown) {
+		this.rightButtonDown = rightButtonDown;
+	}
+
+	public int getUpButtonUp() {
+		return upButtonUp;
+	}
+
+	public void setUpButtonUp(int upButtonUp) {
+		this.upButtonUp = upButtonUp;
+	}
+
+	public int getDownButtonUp() {
+		return downButtonUp;
+	}
+
+	public void setDownButtonUp(int downButtonUp) {
+		this.downButtonUp = downButtonUp;
+	}
+
+	public int getLeftButtonUp() {
+		return leftButtonUp;
+	}
+
+	public void setLeftButtonUp(int leftButtonUp) {
+		this.leftButtonUp = leftButtonUp;
+	}
+
+	public int getRightButtonUp() {
+		return rightButtonUp;
+	}
+
+	public void setRightButtonUp(int rightButtonUp) {
+		this.rightButtonUp = rightButtonUp;
 	}
 
 	public int getButtonA() {

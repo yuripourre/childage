@@ -7,13 +7,21 @@ public class JoystickOneController extends Controller{
 	public JoystickOneController(){
 		super();
 		
-		upButton = KeyEvent.TSK_JOYSTICK_UP;
+		upButtonDown = KeyEvent.TSK_JOYSTICK_UP;
 		
-		downButton = KeyEvent.TSK_JOYSTICK_DOWN;
+		upButtonUp = KeyEvent.TSK_JOYSTICK_CENTER_Y;
 		
-		leftButton = KeyEvent.TSK_JOYSTICK_LEFT;
+		downButtonDown = KeyEvent.TSK_JOYSTICK_DOWN;
 		
-		rightButton = KeyEvent.TSK_JOYSTICK_RIGHT;
+		downButtonUp = KeyEvent.TSK_JOYSTICK_CENTER_Y;
+		
+		leftButtonDown = KeyEvent.TSK_JOYSTICK_LEFT;
+		
+		leftButtonUp = KeyEvent.TSK_JOYSTICK_CENTER_X;
+		
+		rightButtonDown = KeyEvent.TSK_JOYSTICK_RIGHT;
+		
+		rightButtonUp = KeyEvent.TSK_JOYSTICK_CENTER_X;
 		
 		ButtonA = KeyEvent.TSK_Z;
 		

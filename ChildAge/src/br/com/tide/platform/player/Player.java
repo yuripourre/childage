@@ -18,7 +18,7 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 
 	protected int walkSpeed = 5;
 
-	private Controller controller;
+	protected Controller controller;
 
 	protected Set<PlayerState> state = new HashSet<PlayerState>();
 
@@ -127,27 +127,27 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 
 	public void handleEvent(KeyEvent event){
 
-		if(event.isKeyDown(controller.getRightButton())){
+		if(event.isKeyDown(controller.getRightButtonDown())){
 			walkRight();
-		}else if(event.isKeyUp(controller.getRightButton())){
+		}else if(event.isKeyUp(controller.getRightButtonUp())){
 			stopWalkRight();
 		}
 
-		if(event.isKeyDown(controller.getLeftButton())){
+		if(event.isKeyDown(controller.getLeftButtonDown())){
 			walkLeft();
-		}else if(event.isKeyUp(controller.getLeftButton())){
+		}else if(event.isKeyUp(controller.getLeftButtonUp())){
 			stopWalkLeft();
 		}
 
-		if(event.isKeyDown(controller.getUpButton())){
+		if(event.isKeyDown(controller.getUpButtonDown())){
 			walkUp();
-		}else if(event.isKeyUp(controller.getUpButton())){
+		}else if(event.isKeyUp(controller.getUpButtonUp())){
 			stopWalkUp();
 		}
 
-		if(event.isKeyDown(controller.getDownButton())){
+		if(event.isKeyDown(controller.getDownButtonDown())){
 			walkDown();
-		}else if(event.isKeyUp(controller.getDownButton())){
+		}else if(event.isKeyUp(controller.getDownButtonUp())){
 			stopWalkDown();
 		}
 
@@ -171,7 +171,7 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 		return state.contains(PlayerState.WALK_RIGHT)||state.contains(PlayerState.WALK_LEFT)||state.contains(PlayerState.WALK_UP)||state.contains(PlayerState.WALK_DOWN);
 	}
 
-	public boolean isAttacking(){
+	public boolean isAttacking(){		
 		return state.contains(PlayerState.ATTACK);
 	}
 

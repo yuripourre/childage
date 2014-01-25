@@ -18,8 +18,7 @@ public class Childage extends EtyllicaFrame {
 	public void startGame() {
 		
 		addLoader(JoystickLoader.getInstance());
-		JoystickLoader.getInstance().start();
-		
+		//JoystickLoader.getInstance().start();
 		
 		setMainApplication(new HouseApplication(w,h));
 		
