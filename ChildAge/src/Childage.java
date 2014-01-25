@@ -1,6 +1,7 @@
 
 
 import br.com.etyllica.EtyllicaFrame;
+import br.com.etyllica.context.Application;
 import br.com.etyllica.core.loader.JoystickLoader;
 import childage.HouseApplication;
 
@@ -16,12 +17,12 @@ public class Childage extends EtyllicaFrame {
 	}
 
 	@Override
-	public void startGame() {
+	public Application startApplication() {
 		
 		addLoader(JoystickLoader.getInstance());
 		//JoystickLoader.getInstance().start();
 		
-		setMainApplication(new HouseApplication(w,h));
+		return new HouseApplication(w,h);
 		
 	}
 	
