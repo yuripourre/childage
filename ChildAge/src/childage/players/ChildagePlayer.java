@@ -29,7 +29,7 @@ public class ChildagePlayer extends Player{
 		
 		walkSpeed = 5;
 		
-		layer = new AnimatedLayer(x, y, 32, 32, path);
+		layer = new AnimatedLayer(x, y, Floor.TILE_SIZE, Floor.TILE_SIZE, path);
 		
 		layer.setAnimaEmX(true);
 		
@@ -39,6 +39,11 @@ public class ChildagePlayer extends Player{
 	
 	public void update(long now){
 		super.update(now);
+		
+		walk();
+	}
+	
+	public void walk(){
 		
 		if(state.contains(PlayerState.WALK_RIGHT)){
 			this.setOffsetX(walkSpeed);
@@ -51,7 +56,6 @@ public class ChildagePlayer extends Player{
 		}else if(state.contains(PlayerState.WALK_UP)){
 			this.setOffsetY(-walkSpeed);
 		}
-		
 	}
 	
 	public void update(long now, Map map){
@@ -77,12 +81,16 @@ public class ChildagePlayer extends Player{
 		
 	}
 	
-	public void setOffsetX(int offsetX){
-		layer.setOffsetX(offsetX);
+	@Override
+	public void setX(int x){
+		this.x = x;
+		layer.setX(x);
 	}
 	
-	public void setOffsetY(int offsetY){
-		layer.setOffsetY(offsetY);
+	@Override
+	public void setY(int y){
+		this.y = y;
+		layer.setY(y);
 	}
 	
 	@Override
@@ -90,7 +98,9 @@ public class ChildagePlayer extends Player{
 		
 		layer.draw(g);
 		
-		dialog.draw(g);
+		if(dialog!=null){
+			dialog.draw(g);	
+		}		
 		
 	}
 	

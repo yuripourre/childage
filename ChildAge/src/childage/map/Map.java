@@ -8,15 +8,20 @@ import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.AnimatedLayer;
 import br.com.etyllica.util.SVGColor;
+import br.com.tide.platform.player.Player;
+import childage.forniture.Fogao;
 import childage.forniture.Forniture;
 import childage.forniture.FornitureListener;
 import childage.forniture.Ipod;
 import childage.players.ChildagePlayer;
 import childage.players.Monster;
+import childage.players.OldMan;
 import childage.tiles.Floor;
 
 public class Map implements Drawable, FornitureListener{
 
+	private List<ChildagePlayer> players = new ArrayList<ChildagePlayer>();
+	
 	private List<Window> windows = new ArrayList<Window>();
 
 	private List<Monster> monsters = new ArrayList<Monster>();
@@ -34,20 +39,24 @@ public class Map implements Drawable, FornitureListener{
 
 		fornitures.add(new Ipod(100, 100, this));
 
-		fornitures.add(new Ipod(190, 90, this));
+		fornitures.add(new Ipod(490, 190, this));
+		
+		fornitures.add(new Fogao(900, 120, this));
 
 
 		windows.add(new Window(180, 60, 90, 16));
 
 		windows.add(new Window(400, 60, 90, 16));
 
-		windows.add(new Window(60, 160, 16, 90));
+		windows.add(new Window(200, 160, 16, 90));
 
-		windows.add(new Window(60, 280, 16, 90));
+		windows.add(new Window(200, 280, 16, 90));
+		
 
-
-		monsters.add(new Monster(100, 200));
-
+		monsters.add(new Monster(180, 20, windows.get(0), players));
+		
+		monsters.add(new Monster(10, 120, windows.get(2), players));
+		
 
 		floor = new Floor[floorHeight][floorWidth];
 
@@ -72,7 +81,17 @@ public class Map implements Drawable, FornitureListener{
 		drawFornitures(g);
 
 		drawWindows(g);
+		
+		drawMonsters(g);
 
+	}
+	
+	private void drawMonsters(Graphic g){
+		
+		for(Monster monster: monsters){
+			monster.draw(g);
+		}
+		
 	}
 
 	private void drawTiles(Graphic g){
@@ -129,6 +148,12 @@ public class Map implements Drawable, FornitureListener{
 			forniture.update(now);
 
 		}
+		
+		for(Monster monster: monsters){
+
+			monster.update(now);
+
+		}
 
 	}
 
@@ -159,11 +184,23 @@ public class Map implements Drawable, FornitureListener{
 
 	@Override
 	public void listenForniture(Forniture forniture) {
-
-		System.out.println("Forniture playing");
+		
+		for(Monster monster: monsters){
+			
+			if(monster.colideRect(forniture.getRange().getX(), forniture.getRange().getY(), forniture.getRange().getW(), forniture.getRange().getH())){
+				monster.die();
+			}
+			
+		}
 
 		//TODO verify monster Colision
 		//TODO verify windows Colision
+	}
+
+	public void addPlayer(ChildagePlayer player) {
+		
+		players.add(player);
+		
 	}
 
 }

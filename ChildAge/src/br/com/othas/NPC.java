@@ -13,7 +13,7 @@ public abstract class NPC extends Character{
 	
 	private boolean killedAll = false;
 	
-	long startAttack = 0;
+	private long startAttack = 0;
 	
 	public NPC(int x, int y, String rightPath, String leftPath) {
 		super(x, y, rightPath, leftPath);

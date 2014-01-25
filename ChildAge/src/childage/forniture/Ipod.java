@@ -6,7 +6,7 @@ import childage.players.Kind;
 public class Ipod extends Forniture{
 
 	public Ipod(int x, int y, FornitureListener listener){
-		super(x, y, listener);
+		super(x, y, listener, "rock.png");
 		
 		coolDown = 200;
 	}

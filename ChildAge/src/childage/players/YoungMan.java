@@ -5,7 +5,7 @@ import childage.Dialog;
 public class YoungMan extends ChildagePlayer{
 
 	public YoungMan(int x, int y) {
-		super(x, y, "vx_characters.png");
+		super(x, y, "child.png");
 		
 		kind = Kind.CHILD;
 		

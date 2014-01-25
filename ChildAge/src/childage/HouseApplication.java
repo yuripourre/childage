@@ -35,6 +35,10 @@ public class HouseApplication extends Application{
 		
 		youngMan = new YoungMan(530,80);
 		youngMan.setController(new FirstPlayerController());
+		
+		map.addPlayer(oldMan);
+		
+		map.addPlayer(youngMan);
 
 		updateAtFixedRate(50);
 		
@@ -59,7 +63,7 @@ public class HouseApplication extends Application{
 		
 		map.draw(g);
 		
-		drawPlayers(g);		
+		drawPlayers(g);
 	}
 	
 	private void drawPlayers(Graphic g){

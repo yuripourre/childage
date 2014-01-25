@@ -1,5 +1,7 @@
 package childage.forniture;
 
+import java.awt.Color;
+
 import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.GeometricLayer;
@@ -14,14 +16,18 @@ public abstract class Forniture extends GeometricLayer implements Drawable, Usab
 
 	protected int currentCoolDown = 200;
 	
-	private ImageLayer layer;
+	protected ImageLayer layer;
 	
 	protected FornitureListener listener;
+	
+	private GeometricLayer range;
 
-	public Forniture(int x, int y, FornitureListener listener){
+	public Forniture(int x, int y, FornitureListener listener, String path){
 		super(x, y, Floor.TILE_SIZE, Floor.TILE_SIZE);
 		
-		layer = new ImageLayer(x, y, "rock.png"); 
+		range = new GeometricLayer(x-Floor.TILE_SIZE, y-Floor.TILE_SIZE, Floor.TILE_SIZE*3, Floor.TILE_SIZE*3);
+		
+		layer = new ImageLayer(x, y, path); 
 		
 		this.listener = listener; 
 		
@@ -31,6 +37,11 @@ public abstract class Forniture extends GeometricLayer implements Drawable, Usab
 	public void draw(Graphic g) {
 
 		layer.draw(g);
+		
+		g.setColor(Color.GREEN);
+		g.setAlpha(70);
+		g.fillRect(range);
+		g.setAlpha(100);
 
 		if(currentCoolDown!=coolDown){
 
@@ -71,6 +82,10 @@ public abstract class Forniture extends GeometricLayer implements Drawable, Usab
 		
 		return "";
 
+	}
+
+	public GeometricLayer getRange() {
+		return range;
 	}
 
 	public FornitureListener getListener() {
