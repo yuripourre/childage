@@ -7,7 +7,7 @@ import childage.HouseApplication;
 public class Childage extends EtyllicaFrame {
 	
 	public Childage(){
-		super(800,600);
+		super(1280,720);
 	}
 	
 	public static void main(String[] args) {

@@ -8,12 +8,13 @@ import br.com.etyllica.util.SVGColor;
 import br.com.tide.platform.player.Player;
 import br.com.tide.platform.player.PlayerState;
 import childage.Dialog;
+import childage.forniture.Forniture;
 import childage.map.Map;
 import childage.tiles.Floor;
 
 public class ChildagePlayer extends Player{
 
-	protected int age = 0;
+	protected Kind kind = Kind.CHILD;
 	
 	protected Dialog dialog;
 	
@@ -21,7 +22,7 @@ public class ChildagePlayer extends Player{
 	
 	protected AnimatedLayer layer = null;
 
-	protected Color lifeBarColor = SVGColor.GREEN; 
+	protected Color lifeBarColor = SVGColor.GREEN;
 	
 	public ChildagePlayer(int x, int y, String path) {
 		super(x, y, Floor.TILE_SIZE, Floor.TILE_SIZE);
@@ -177,8 +178,17 @@ public class ChildagePlayer extends Player{
 		return dialog;
 	}
 
-	public int getAge() {
-		return age;
+	public Kind getKind() {
+		return kind;
+	}
+	
+	public boolean colide(Forniture forniture){
+		return layer.colideRect(forniture.getX(), forniture.getY(), forniture.getW(), forniture.getH());
+	}
+
+	public AnimatedLayer getLayer() {
+
+		return layer;
 	}
 	
 }

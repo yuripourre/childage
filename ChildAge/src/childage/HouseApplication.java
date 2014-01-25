@@ -32,14 +32,14 @@ public class HouseApplication extends Application{
 		
 		oldMan = new OldMan(30,80);
 		oldMan.setController(new EasyController());
-		//oldMan.setController(new JoystickOneController());
 		
 		youngMan = new YoungMan(530,80);
 		youngMan.setController(new FirstPlayerController());
 
-		updateAtFixedRate(200);
+		updateAtFixedRate(50);
 		
 		loading = 100;
+		
 	}
 	
 	public void timeUpdate(long now){

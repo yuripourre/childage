@@ -3,6 +3,7 @@ package childage.forniture;
 import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.GeometricLayer;
+import br.com.etyllica.layer.ImageLayer;
 import br.com.etyllica.util.SVGColor;
 import childage.players.ChildagePlayer;
 import childage.tiles.Floor;
@@ -12,17 +13,24 @@ public abstract class Forniture extends GeometricLayer implements Drawable, Usab
 	protected int coolDown = 200;
 
 	protected int currentCoolDown = 200;
+	
+	private ImageLayer layer;
+	
+	protected FornitureListener listener;
 
-	public Forniture(int x, int y){
+	public Forniture(int x, int y, FornitureListener listener){
 		super(x, y, Floor.TILE_SIZE, Floor.TILE_SIZE);
+		
+		layer = new ImageLayer(x, y, "rock.png"); 
+		
+		this.listener = listener; 
+		
 	}
 
 	@Override
 	public void draw(Graphic g) {
 
-		g.setColor(SVGColor.ORANGE);
-
-		g.fillRect(this);
+		layer.draw(g);
 
 		if(currentCoolDown!=coolDown){
 
@@ -63,6 +71,14 @@ public abstract class Forniture extends GeometricLayer implements Drawable, Usab
 		
 		return "";
 
+	}
+
+	public FornitureListener getListener() {
+		return listener;
+	}
+
+	public void setListener(FornitureListener listener) {
+		this.listener = listener;
 	}
 
 }

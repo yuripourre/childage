@@ -23,11 +23,11 @@ public class EasyController extends Controller{
 		
 		rightButtonUp = KeyEvent.TSK_RIGHT_ARROW;
 		
-		ButtonA = KeyEvent.TSK_Z;
+		ButtonA = KeyEvent.TSK_SHIFT_DIREITA;
 		
-		ButtonB = KeyEvent.TSK_X;
+		ButtonB = KeyEvent.TSK_CTRL_DIREITA;
 		
-		ButtonC = KeyEvent.TSK_C;
+		ButtonC = KeyEvent.TSK_M;
 		
 		startButton = KeyEvent.TSK_ENTER;
 		

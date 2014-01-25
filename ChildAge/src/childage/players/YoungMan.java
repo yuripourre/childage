@@ -7,7 +7,7 @@ public class YoungMan extends ChildagePlayer{
 	public YoungMan(int x, int y) {
 		super(x, y, "vx_characters.png");
 		
-		age = 5;
+		kind = Kind.CHILD;
 		
 		dialog = new Dialog(420, 480, 20);
 		
