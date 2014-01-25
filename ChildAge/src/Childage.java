@@ -1,7 +1,8 @@
-package childage;
+
 
 import br.com.etyllica.EtyllicaFrame;
 import br.com.etyllica.core.loader.JoystickLoader;
+import childage.HouseApplication;
 
 public class Childage extends EtyllicaFrame {
 	

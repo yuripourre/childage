@@ -7,10 +7,9 @@ import java.util.List;
 import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.util.SVGColor;
-import childage.Dialog;
 import childage.forniture.Forniture;
+import childage.forniture.Ipod;
 import childage.players.ChildagePlayer;
-import childage.players.OldMan;
 import childage.tiles.Floor;
 
 public class Map implements Drawable{
@@ -28,7 +27,9 @@ public class Map implements Drawable{
 		
 		fornitures = new ArrayList<Forniture>();
 		
-		fornitures.add(new Forniture(20, 20));
+		fornitures.add(new Ipod(20, 20));
+		
+		fornitures.add(new Ipod(90, 90));
 		
 		floor = new Floor[floorHeight][floorWidth];
 
@@ -109,10 +110,12 @@ public class Map implements Drawable{
 			
 			if(player.isAttacking()){
 				
-				String text = forniture.use();
+				String text = forniture.use(player);
 				
 				if(!text.isEmpty()){
-					//player.getDialog().setText();
+					
+					player.getDialog().getText().setText(text);
+					
 				}
 				
 			}		

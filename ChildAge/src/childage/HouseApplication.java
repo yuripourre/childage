@@ -37,7 +37,7 @@ public class HouseApplication extends Application{
 		youngMan = new YoungMan(530,80);
 		youngMan.setController(new FirstPlayerController());
 
-		updateAtFixedRate(20);
+		updateAtFixedRate(200);
 		
 		loading = 100;
 	}
@@ -78,13 +78,6 @@ public class HouseApplication extends Application{
 
 	@Override
 	public GUIEvent updateKeyboard(KeyEvent event) {
-		
-		if(event.isKeyDown(KeyEvent.TSK_JOYSTICK_RIGHT)){
-			oldMan.walkRight();
-		}
-		else if(event.isKeyDown(KeyEvent.TSK_JOYSTICK_LEFT)){
-			oldMan.walkLeft();
-		}
 		
 		oldMan.handleEvent(event);
 		

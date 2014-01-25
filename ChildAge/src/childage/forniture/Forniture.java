@@ -4,13 +4,14 @@ import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.GeometricLayer;
 import br.com.etyllica.util.SVGColor;
+import childage.players.ChildagePlayer;
 import childage.tiles.Floor;
 
-public class Forniture extends GeometricLayer implements Drawable{
+public abstract class Forniture extends GeometricLayer implements Drawable, UsableItem{
 
 	protected int coolDown = 200;
 
-	private int currentCoolDown = 200;
+	protected int currentCoolDown = 200;
 
 	public Forniture(int x, int y){
 		super(x, y, Floor.TILE_SIZE, Floor.TILE_SIZE);
@@ -52,8 +53,8 @@ public class Forniture extends GeometricLayer implements Drawable{
 		
 	}
 	
-	public String use(){
-
+	public String use(ChildagePlayer player){
+		
 		if(currentCoolDown==coolDown){
 
 			currentCoolDown = 0;
