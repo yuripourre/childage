@@ -8,7 +8,7 @@ import childage.tiles.Floor;
 
 public class Forniture extends GeometricLayer implements Drawable{
 
-	private int coolDown = 200;
+	protected int coolDown = 200;
 
 	private int currentCoolDown = 200;
 
@@ -52,13 +52,15 @@ public class Forniture extends GeometricLayer implements Drawable{
 		
 	}
 	
-	public void use(){
+	public String use(){
 
 		if(currentCoolDown==coolDown){
 
 			currentCoolDown = 0;
 			
 		}
+		
+		return "";
 
 	}
 

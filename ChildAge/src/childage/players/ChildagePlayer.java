@@ -1,13 +1,17 @@
 package childage.players;
 
-import childage.map.Map;
-import childage.tiles.Floor;
-import br.com.etyllica.core.event.KeyEvent;
 import br.com.tide.platform.player.Player;
 import br.com.tide.platform.player.PlayerState;
+import childage.Dialog;
+import childage.map.Map;
+import childage.tiles.Floor;
 
 public class ChildagePlayer extends Player{
 
+	protected int age = 0;
+	
+	protected Dialog dialog;
+	
 	public boolean usingItem = false;
 	
 	public ChildagePlayer(int x, int y) {
@@ -50,6 +54,7 @@ public class ChildagePlayer extends Player{
 		
 	}
 	
+	@Override
 	public void attack(){
 		state.add(PlayerState.ATTACK);
 		onAttack();
@@ -63,18 +68,6 @@ public class ChildagePlayer extends Player{
 	@Override
 	public void onStopAttack(){
 		usingItem = false;
-	}
-	
-	@Override
-	public void handleEvent(KeyEvent event){
-		super.handleEvent(event);
-		
-		if(event.isKeyDown(controller.getButtonA())){
-			usingItem = true;
-		}else if(event.isKeyUp(controller.getButtonA())){
-			usingItem = false;
-		}
-		
 	}
 	
 	public void undoWalk(){
@@ -95,12 +88,8 @@ public class ChildagePlayer extends Player{
 		
 	}
 
-	public boolean isUsingItem() {
-		return usingItem;
-	}
-
-	public void setUsingItem(boolean usingItem) {
-		this.usingItem = usingItem;
+	public int getAge() {
+		return age;
 	}
 	
 }

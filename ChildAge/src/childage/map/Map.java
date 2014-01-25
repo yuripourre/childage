@@ -6,14 +6,15 @@ import java.util.List;
 
 import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
-import br.com.etyllica.layer.GeometricLayer;
 import br.com.etyllica.util.SVGColor;
+import childage.Dialog;
 import childage.forniture.Forniture;
 import childage.players.ChildagePlayer;
+import childage.players.OldMan;
 import childage.tiles.Floor;
 
 public class Map implements Drawable{
-
+	
 	private List<Forniture> fornitures;
 	
 	private Floor[][] floor;
@@ -24,7 +25,7 @@ public class Map implements Drawable{
 	
 	public Map(){
 		super();
-	
+		
 		fornitures = new ArrayList<Forniture>();
 		
 		fornitures.add(new Forniture(20, 20));
@@ -107,10 +108,13 @@ public class Map implements Drawable{
 		if(forniture!=null){
 			
 			if(player.isAttacking()){
-			
-				System.out.println("Attacking and Colision");
 				
-				forniture.use();
+				String text = forniture.use();
+				
+				if(!text.isEmpty()){
+					//player.getDialog().setText();
+				}
+				
 			}		
 			
 			player.undoWalk();
