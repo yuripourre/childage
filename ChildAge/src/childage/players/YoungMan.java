@@ -9,7 +9,7 @@ public class YoungMan extends ChildagePlayer{
 		
 		kind = Kind.CHILD;
 		
-		dialog = new Dialog(420, 480, 20);
+		dialog = new Dialog(620, 600, 20, "child.png");
 		
 		dialog.getText().setText("I am a young man");
 		
