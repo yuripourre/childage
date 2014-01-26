@@ -27,13 +27,15 @@ public class Map implements Drawable, FornitureListener{
 
 	private List<Forniture> fornitures = new ArrayList<Forniture>();
 
-	private List<Forniture> temporaryFornitures = new ArrayList<Forniture>();
+	private List<TemporaryForniture> temporaryFornitures = new ArrayList<TemporaryForniture>();
 
 	private Floor[][] floor;
 
 	private final int floorWidth = 20;
 
 	private final int floorHeight = 10;
+	
+	private final long FORNITURE_DELAY = 2000;
 
 	public Map(){
 		super();
@@ -159,20 +161,26 @@ public class Map implements Drawable, FornitureListener{
 			monster.update(now);
 
 		}
-
-		for(Forniture forniture: temporaryFornitures){
-
+		
+		for(int i=temporaryFornitures.size()-1;i>=0;i--){
+		
+			TemporaryForniture forniture = temporaryFornitures.get(i);
+			
 			for(Monster monster: monsters){
 
 				monsterColision(monster, forniture);
 
+			}
+			
+			if(now>forniture.getDropped()+FORNITURE_DELAY){
+				temporaryFornitures.remove(i);
 			}
 
 		}
 
 	}
 
-	public void updatePlayer(ChildagePlayer player) {
+	public void updatePlayer(ChildagePlayer player, long now) {
 
 		AnimatedLayer layer = player.getLayer();
 
@@ -208,6 +216,8 @@ public class Map implements Drawable, FornitureListener{
 
 					listenForniture(clone);
 
+					clone.setDropped(now);
+					
 					player.dropItem();
 
 				}

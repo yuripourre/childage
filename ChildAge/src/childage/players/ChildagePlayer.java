@@ -80,7 +80,7 @@ public class ChildagePlayer extends Player{
 			layer.nextFrame();
 		}
 		
-		map.updatePlayer(this);
+		map.updatePlayer(this, now);
 		
 	}
 	
