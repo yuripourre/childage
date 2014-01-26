@@ -174,6 +174,10 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 	public boolean isAttacking(){		
 		return state.contains(PlayerState.ATTACK);
 	}
+	
+	public boolean isSpecialAttacking(){
+		return state.contains(PlayerState.SPECIAL_ATTACK);
+	}
 
 	public boolean isStanding(){
 		return state.contains(PlayerState.STAND);

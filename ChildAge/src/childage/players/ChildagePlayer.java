@@ -9,6 +9,7 @@ import br.com.tide.platform.player.Player;
 import br.com.tide.platform.player.PlayerState;
 import childage.Dialog;
 import childage.forniture.Forniture;
+import childage.forniture.TemporaryForniture;
 import childage.map.Map;
 import childage.tiles.Floor;
 
@@ -24,10 +25,12 @@ public class ChildagePlayer extends Player{
 
 	protected Color lifeBarColor = SVGColor.GREEN;
 	
+	private TemporaryForniture carried = null;
+	
 	public ChildagePlayer(int x, int y, String path) {
 		super(x, y, Floor.TILE_SIZE, Floor.TILE_SIZE);
 		
-		walkSpeed = 5;
+		walkSpeed = 20;
 		
 		layer = new AnimatedLayer(x, y, Floor.TILE_SIZE, Floor.TILE_SIZE, path);
 		
@@ -199,6 +202,22 @@ public class ChildagePlayer extends Player{
 	public AnimatedLayer getLayer() {
 
 		return layer;
+	}
+	
+	public void carry(TemporaryForniture forniture){
+		this.carried = forniture;
+	}
+	
+	public boolean isCarringItem(){
+		return carried!=null;
+	}
+
+	public TemporaryForniture getCarried() {
+		return carried;
+	}
+
+	public void dropItem() {
+		carried = null;
 	}
 	
 }

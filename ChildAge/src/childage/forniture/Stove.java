@@ -1,33 +1,29 @@
 package childage.forniture;
 
 import br.com.etyllica.core.video.Graphic;
-import br.com.etyllica.layer.ImageLayer;
 import childage.players.ChildagePlayer;
 import childage.players.Kind;
 
-public class Fogao extends Forniture{
+public class Stove extends Forniture{
 
-	private ImageLayer fryer;
+	private Fryer fryer;
 
 	private boolean haveFood = false;
 
-	public Fogao(int x, int y, FornitureListener listener){
+	public Stove(int x, int y, FornitureListener listener){
 		super(x, y, listener, "itens/fogao.png");
 
-		fryer = new ImageLayer(this.x+10, this.y+20, "itens/panela.png");
+		fryer = new Fryer(this.x+5, this.y-25, listener);
 
 		coolDown = 200;
 	}
 
 	@Override
 	public String use(ChildagePlayer player){
-		super.use(player);
 
 		if(!haveFood){
 
 			if(player.getKind()==Kind.OLDMAN){
-
-				//listener.listenForniture(this);
 
 				haveFood = true;
 				
@@ -36,6 +32,7 @@ public class Fogao extends Forniture{
 			}else if(player.getKind()==Kind.CHILD){
 
 				return "Ouch! It's hot!";
+				
 			}
 			
 		}
@@ -44,9 +41,12 @@ public class Fogao extends Forniture{
 			
 			if(player.getKind()==Kind.CHILD){
 
-				listener.listenForniture(this);
+				//startCoolDown
+				super.use(player);
+				
+				player.carry(fryer);
 
-				haveFood = true;
+				haveFood = false;
 				
 				return "Carry Item";
 
