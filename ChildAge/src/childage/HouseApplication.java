@@ -1,11 +1,10 @@
 package childage;
-import java.awt.Color;
-
 import br.com.etyllica.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.layer.ImageLayer;
 import br.com.tide.input.controller.EasyController;
 import br.com.tide.input.controller.FirstPlayerController;
 import childage.map.Map;
@@ -20,6 +19,8 @@ public class HouseApplication extends Application{
 	private OldMan oldMan;
 	
 	private YoungMan youngMan;
+	
+	private ImageLayer house;
 
 	public HouseApplication(int w, int h) {
 		super(w, h);
@@ -35,6 +36,8 @@ public class HouseApplication extends Application{
 		
 		youngMan = new YoungMan(530,80);
 		youngMan.setController(new FirstPlayerController());
+		
+		house = new ImageLayer("house.png");
 		
 		map.addPlayer(oldMan);
 		
@@ -58,8 +61,9 @@ public class HouseApplication extends Application{
 
 	@Override
 	public void draw(Graphic g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(0,0,w,h);
+		//g.setColor(Color.BLUE);
+		//g.fillRect(0,0,w,h);
+		house.draw(g);
 		
 		map.draw(g);
 		

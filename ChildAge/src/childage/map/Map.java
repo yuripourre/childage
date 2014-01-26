@@ -1,6 +1,5 @@
 package childage.map;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,14 +7,15 @@ import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.AnimatedLayer;
 import br.com.etyllica.util.SVGColor;
-import childage.forniture.Stove;
 import childage.forniture.Forniture;
 import childage.forniture.FornitureListener;
 import childage.forniture.Ipod;
+import childage.forniture.Pinico;
+import childage.forniture.Stove;
 import childage.forniture.TemporaryForniture;
+import childage.forniture.Jukebox;
 import childage.players.ChildagePlayer;
 import childage.players.Monster;
-import childage.tiles.Floor;
 
 public class Map implements Drawable, FornitureListener{
 
@@ -29,22 +29,24 @@ public class Map implements Drawable, FornitureListener{
 
 	private List<TemporaryForniture> temporaryFornitures = new ArrayList<TemporaryForniture>();
 
-	private Floor[][] floor;
+	/*private Floor[][] floor;
 
 	private final int floorWidth = 20;
 
-	private final int floorHeight = 10;
+	private final int floorHeight = 10;*/
 	
 	private final long FORNITURE_DELAY = 2000;
 
 	public Map(){
 		super();
 
-		fornitures.add(new Ipod(100, 100, this));
+		fornitures.add(new Jukebox(320, 180, this));
 
 		fornitures.add(new Ipod(490, 190, this));
 
-		fornitures.add(new Stove(900, 120, this));
+		fornitures.add(new Stove(896, 185, this));
+		
+		fornitures.add(new Pinico(325, 448, this));
 
 
 		windows.add(new Window(180, 60, 90, 16));
@@ -61,25 +63,11 @@ public class Map implements Drawable, FornitureListener{
 		monsters.add(new Monster(10, 120, windows.get(2), players));
 
 
-		floor = new Floor[floorHeight][floorWidth];
-
 		int offsetY = 40;
-
-		for(int j=0; j<floorHeight;j++){
-
-			for(int i=0; i<floorWidth;i++){
-
-				floor[j][i] = new Floor(i*Floor.TILE_SIZE, offsetY+j*Floor.TILE_SIZE);
-
-			}
-
-		}
 
 	}
 
 	public void draw(Graphic g){
-
-		drawTiles(g);
 
 		drawFornitures(g);
 
@@ -95,21 +83,6 @@ public class Map implements Drawable, FornitureListener{
 			monster.draw(g);
 		}
 
-	}
-
-	private void drawTiles(Graphic g){
-
-		g.setColor(Color.BLACK);
-
-		for(int j=0; j<floorHeight;j++){
-
-			for(int i=0; i<floorWidth;i++){
-
-				g.drawRect(floor[j][i]);
-
-			}
-
-		}
 	}
 
 	private void drawFornitures(Graphic g){

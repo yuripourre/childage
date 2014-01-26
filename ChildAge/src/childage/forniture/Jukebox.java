@@ -2,16 +2,11 @@ package childage.forniture;
 
 import childage.players.ChildagePlayer;
 import childage.players.Kind;
-import childage.tiles.Floor;
 
-public class Ipod extends Forniture{
-
-	public Ipod(int x, int y, FornitureListener listener){
-		super(x, y, listener, "itens/ipod.png");
-		
-		this.layer.setW(Floor.TILE_SIZE);
-		
-		this.layer.setH(Floor.TILE_SIZE);		
+public class Jukebox extends Forniture{	
+	
+	public Jukebox(int x, int y, FornitureListener listener){
+		super(x, y, listener, "itens/vitrola.png");	
 		
 		coolDown = 200;
 	}
@@ -22,13 +17,13 @@ public class Ipod extends Forniture{
 		
 		if(player.getKind()==Kind.OLDMAN){
 			
-			return "WHAAAAT IS THIS?!?!";
+			return "Uh a Jukebox!";
 			
 		}else if(player.getKind()==Kind.CHILD){
 			
 			listener.listenForniture(this);
 			
-			return "Uh an Ipod!";
+			return "WHAAAAT IS THIS?!?!";
 		}
 
 		return "";

@@ -1,19 +1,14 @@
 package childage.forniture;
 
-import br.com.etyllica.core.video.Graphic;
 import childage.players.ChildagePlayer;
 import childage.players.Kind;
 
-public class Stove extends Forniture{
-
-	private Fryer fryer;
-
-	private boolean haveFood = false;
+public class Stove extends ComplexForniture{
 
 	public Stove(int x, int y, FornitureListener listener){
 		super(x, y, listener, "itens/fogao.png");
 
-		fryer = new Fryer(this.x+5, this.y-25, listener);
+		temporary = new Fryer(this.x+5, this.y-25, listener);
 
 		coolDown = 200;
 	}
@@ -44,11 +39,11 @@ public class Stove extends Forniture{
 				//startCoolDown
 				super.use(player);
 				
-				player.carry(fryer);
+				player.carry(temporary);
 
 				haveFood = false;
 				
-				return "Carry Item";
+				return "";
 
 			}else if(player.getKind()==Kind.OLDMAN){
 
@@ -58,17 +53,6 @@ public class Stove extends Forniture{
 		}
 
 		return "";
-	}
-	
-	@Override
-	public void draw(Graphic g){
-		
-		super.draw(g);
-		
-		if(haveFood){
-			fryer.draw(g);
-		}
-		
 	}
 
 }
