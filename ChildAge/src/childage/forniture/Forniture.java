@@ -22,6 +22,11 @@ public abstract class Forniture extends GeometricLayer implements Drawable, Usab
 	
 	private GeometricLayer range;
 
+	public Forniture(int x, int y, int w, int h){
+		super(x,y,w,h);
+		layer = new ImageLayer(x, y, w, h); 
+	}
+	
 	public Forniture(int x, int y, FornitureListener listener, String path){
 		super(x, y, Floor.TILE_SIZE, Floor.TILE_SIZE);
 		
@@ -38,10 +43,7 @@ public abstract class Forniture extends GeometricLayer implements Drawable, Usab
 
 		layer.draw(g);
 		
-		g.setColor(Color.GREEN);
-		g.setAlpha(70);
-		g.fillRect(range);
-		g.setAlpha(100);
+		//drawRange(g);
 
 		if(currentCoolDown!=coolDown){
 
@@ -61,6 +63,15 @@ public abstract class Forniture extends GeometricLayer implements Drawable, Usab
 
 		}
 
+	}
+	
+	private void drawRange(Graphic g){
+		
+		g.setColor(Color.GREEN);
+		g.setAlpha(70);
+		g.fillRect(range);
+		g.setAlpha(100);
+		
 	}
 
 	public void update(long now){

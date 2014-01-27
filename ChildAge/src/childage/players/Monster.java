@@ -155,8 +155,6 @@ public class Monster extends ChildagePlayer{
 
 			if(!isAttacking()){
 
-				
-				
 				attack();
 
 				startAttack = now;
@@ -250,7 +248,8 @@ public class Monster extends ChildagePlayer{
 
 	@Override
 	public void onDie(){
-		this.layer.setOpacity(50);
+		//this.layer.setOpacity(50);
+		this.layer.setVisible(false);		
 	}
 
 }

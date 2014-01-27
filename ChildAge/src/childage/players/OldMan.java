@@ -9,9 +9,9 @@ public class OldMan extends ChildagePlayer{
 		
 		kind = Kind.OLDMAN;
 		
-		dialog = new Dialog(20, 600, 28, "oldman.png");
+		dialog = new Dialog(40, 600, 28, "oldman.png");
 		
-		dialog.getText().setText("I am an old man");
+		dialog.getText().setText("I am an old man.");
 		
 	}
 	

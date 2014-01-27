@@ -1,4 +1,5 @@
 package childage;
+import sound.model.Music;
 import br.com.etyllica.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
@@ -21,6 +22,10 @@ public class HouseApplication extends Application{
 	private YoungMan youngMan;
 	
 	private ImageLayer house;
+	
+	private ImageLayer roof;
+	
+	private Music music;
 
 	public HouseApplication(int w, int h) {
 		super(w, h);
@@ -31,17 +36,23 @@ public class HouseApplication extends Application{
 
 		map = new Map();
 		
-		oldMan = new OldMan(30,80);
+		oldMan = new OldMan(570,340);
 		oldMan.setController(new EasyController());
 		
-		youngMan = new YoungMan(530,80);
+		youngMan = new YoungMan(670,338);
 		youngMan.setController(new FirstPlayerController());
 		
 		house = new ImageLayer("house.png");
 		
+		roof = new ImageLayer("roof.png");
+		
 		map.addPlayer(oldMan);
 		
 		map.addPlayer(youngMan);
+		
+		music = new Music("music.wav");
+		
+		music.play();
 
 		updateAtFixedRate(50);
 		
@@ -49,6 +60,7 @@ public class HouseApplication extends Application{
 		
 	}
 	
+	@Override
 	public void timeUpdate(long now){
 		
 		oldMan.update(now, map);
@@ -68,6 +80,12 @@ public class HouseApplication extends Application{
 		map.draw(g);
 		
 		drawPlayers(g);
+		
+		roof.draw(g);
+		
+		drawDialogs(g);
+		
+		
 	}
 	
 	private void drawPlayers(Graphic g){
@@ -75,6 +93,14 @@ public class HouseApplication extends Application{
 		oldMan.draw(g);
 		
 		youngMan.draw(g);
+		
+	}
+	
+	private void drawDialogs(Graphic g){
+		
+		oldMan.drawDialog(g);
+		
+		youngMan.drawDialog(g);
 		
 	}
 

@@ -1,7 +1,9 @@
 package childage.map;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
@@ -10,10 +12,12 @@ import br.com.etyllica.util.SVGColor;
 import childage.forniture.Forniture;
 import childage.forniture.FornitureListener;
 import childage.forniture.Ipod;
+import childage.forniture.Jukebox;
 import childage.forniture.Pinico;
+import childage.forniture.Sock;
 import childage.forniture.Stove;
 import childage.forniture.TemporaryForniture;
-import childage.forniture.Jukebox;
+import childage.house.Wall;
 import childage.players.ChildagePlayer;
 import childage.players.Monster;
 
@@ -29,41 +33,78 @@ public class Map implements Drawable, FornitureListener{
 
 	private List<TemporaryForniture> temporaryFornitures = new ArrayList<TemporaryForniture>();
 
-	/*private Floor[][] floor;
+	private static final long FORNITURE_DELAY = 2000;
 
-	private final int floorWidth = 20;
+	private static final long WAVE_DELAY = 4000;
 
-	private final int floorHeight = 10;*/
-	
-	private final long FORNITURE_DELAY = 2000;
+	private long lastWave = 1;
+
+	private int monsterKilled = 0;
+
+	private int activeMonsters = 0;
 
 	public Map(){
 		super();
+
+		//Left Window
+		Window leftWindow = new Window(165, 210, "windows/left_window.png", "windows/left_window_broken.png");
+
+		leftWindow.setxTarget(-120);
+
+		windows.add(leftWindow);
+
+		//Right Window
+		Window rightWindow = new Window(1092, 470, "windows/right_window.png", "windows/right_window_broken.png");
+
+		rightWindow.setxTarget(50);
+
+		windows.add(rightWindow);
+
+		//Upper Left Window
+		Window upperLeftWindow = new Window(379, 53, "windows/upper_left_window.png", "windows/upper_left_window_broken.png");
+
+		upperLeftWindow.setyTarget(-110);
+
+		windows.add(upperLeftWindow);
+
+		//Upper Right Window
+		Window upperRightWindow = new Window(760, 53, "windows/upper_right_window.png", "windows/upper_right_window_broken.png");
+
+		upperRightWindow.setyTarget(-110);
+
+		//Upper Right Window
+		windows.add(upperRightWindow);
+
 
 		fornitures.add(new Jukebox(320, 180, this));
 
 		fornitures.add(new Ipod(490, 190, this));
 
 		fornitures.add(new Stove(896, 185, this));
-		
+
 		fornitures.add(new Pinico(325, 448, this));
 
+		fornitures.add(new Sock(969, 460, this));
 
-		windows.add(new Window(180, 60, 90, 16));
+		fornitures.add(new Wall(200, 128, 886, 45));
 
-		windows.add(new Window(400, 60, 90, 16));
+		fornitures.add(new Wall(206, 355, 300, 45));
 
-		windows.add(new Window(200, 160, 16, 90));
+		fornitures.add(new Wall(188, 168, 45, 200));
 
-		windows.add(new Window(200, 280, 16, 90));
+		fornitures.add(new Wall(193, 416, 45, 200));
 
+		fornitures.add(new Wall(462, 380, 40, 95));
 
-		monsters.add(new Monster(180, 20, windows.get(0), players));
+		//Down
+		fornitures.add(new Wall(200, 630, 886, 50));
 
-		monsters.add(new Monster(10, 120, windows.get(2), players));
+		//Left
+		fornitures.add(new Wall(1055, 197, 40, 430));
 
+		fornitures.add(new Wall(793, 350, 260, 65));
 
-		int offsetY = 40;
+		fornitures.add(new Wall(777, 292, 40, 116));
 
 	}
 
@@ -74,6 +115,9 @@ public class Map implements Drawable, FornitureListener{
 		drawWindows(g);
 
 		drawMonsters(g);
+
+		g.setColor(Color.WHITE);
+		g.drawShadow(980, 60, "Monsters Killed: "+monsterKilled);
 
 	}
 
@@ -120,8 +164,31 @@ public class Map implements Drawable, FornitureListener{
 		return null;
 
 	}
-	
+
+	private boolean activeWave = true;
+
 	public void update(long now){
+
+		System.out.println("Now: "+now);
+		System.out.println("Last Wave: "+lastWave);
+		System.out.println("Result: "+now/WAVE_DELAY);
+
+		if(now>lastWave+WAVE_DELAY){
+
+			if(activeWave){
+
+				for(Window window: windows){
+
+					createMonster(window);
+
+				}
+
+				lastWave = now;
+
+				activeWave = false;
+			}
+
+		}
 
 		for(Forniture forniture: fornitures){
 
@@ -134,22 +201,47 @@ public class Map implements Drawable, FornitureListener{
 			monster.update(now);
 
 		}
-		
+
 		for(int i=temporaryFornitures.size()-1;i>=0;i--){
-		
+
 			TemporaryForniture forniture = temporaryFornitures.get(i);
-			
+
 			for(Monster monster: monsters){
 
 				monsterColision(monster, forniture);
 
 			}
-			
+
 			if(now>forniture.getDropped()+FORNITURE_DELAY){
 				temporaryFornitures.remove(i);
 			}
 
 		}
+
+
+		if(!activeWave){
+			
+			if(monsterKilled==activeMonsters){
+
+				activeWave = true;
+
+				lastWave = now;
+
+			}
+		}
+
+	}
+
+	private void createMonster(Window window){
+
+		Random random = new Random();
+
+		if(random.nextInt(10)>1){
+
+		}
+
+		activeMonsters++;
+		monsters.add(new Monster(window.getX()+window.getxTarget(), window.getY()+window.getyTarget(), window, players));
 
 	}
 
@@ -190,7 +282,7 @@ public class Map implements Drawable, FornitureListener{
 					listenForniture(clone);
 
 					clone.setDropped(now);
-					
+
 					player.dropItem();
 
 				}
@@ -219,13 +311,24 @@ public class Map implements Drawable, FornitureListener{
 		}
 
 	}
-	
-	private void monsterColision(Monster monster, Forniture forniture){
-		
+
+	private boolean monsterColision(Monster monster, Forniture forniture){
+
 		if(monster.colideRect(forniture.getRange().getX(), forniture.getRange().getY(), forniture.getRange().getW(), forniture.getRange().getH())){
-			monster.die();
+
+			if(monster.getLayer().isVisible()){
+
+				monsterKilled++;
+
+				monster.die();				
+
+			}
+
+			return true;
 		}
-		
+
+		return false;
+
 	}
 
 	public void addPlayer(ChildagePlayer player) {

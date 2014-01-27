@@ -101,9 +101,14 @@ public class ChildagePlayer extends Player{
 		
 		layer.draw(g);
 		
+		
+	}	
+	
+	public void drawDialog(Graphic g){
+
 		if(dialog!=null){
 			dialog.draw(g);	
-		}		
+		}
 		
 	}
 	
@@ -206,6 +211,7 @@ public class ChildagePlayer extends Player{
 	
 	public void carry(TemporaryForniture forniture){
 		this.carried = forniture;
+		this.dialog.changeCarryItem(forniture.getPath());
 	}
 	
 	public boolean isCarringItem(){
@@ -218,6 +224,7 @@ public class ChildagePlayer extends Player{
 
 	public void dropItem() {
 		carried = null;
+		this.dialog.hideCarryItem();
 	}
 	
 }

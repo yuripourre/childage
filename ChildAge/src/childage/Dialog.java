@@ -25,7 +25,7 @@ public class Dialog implements Drawable{
 		panel = new Panel(x, y, 480, 100);
 		panel.setRoundness(10);
 		
-		text = new TextLayer(panel.getX()+100, panel.getY()+30, "dialog");
+		text = new TextLayer(panel.getX()+180, panel.getY()+40, "dialog");
 		
 		text.setSize(fontSize);
 		
@@ -34,6 +34,8 @@ public class Dialog implements Drawable{
 		face.setH(Floor.TILE_SIZE);
 		
 		carryContainer = new ImageLayer(panel.getX()+86, panel.getY()+8, "carry_container.png");
+		
+		carryItem = new ImageLayer(carryContainer.getX()+3, carryContainer.getY()+3);
 		
 	}
 	
@@ -52,7 +54,17 @@ public class Dialog implements Drawable{
 		text.draw(g);
 		
 		face.draw(g);
+		carryItem.draw(g);
 		carryContainer.draw(g);
+	}
+
+	public void changeCarryItem(String path) {
+		carryItem = new ImageLayer(carryContainer.getX()+3, carryContainer.getY()+3, path);
+		carryItem.setVisible(true);
+	}
+	
+	public void hideCarryItem() {
+		carryItem.setVisible(false);
 	}
 
 	public TextLayer getText() {

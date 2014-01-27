@@ -1,8 +1,8 @@
 
 
+import sound.MultimediaLoader;
 import br.com.etyllica.EtyllicaFrame;
 import br.com.etyllica.context.Application;
-import br.com.etyllica.core.loader.JoystickLoader;
 import childage.HouseApplication;
 
 public class Childage extends EtyllicaFrame {
@@ -19,7 +19,10 @@ public class Childage extends EtyllicaFrame {
 	@Override
 	public Application startApplication() {
 		
-		addLoader(JoystickLoader.getInstance());
+		addLoader(MultimediaLoader.getInstance());
+		
+		//addLoader(JoystickLoader.getInstance());
+		
 		//JoystickLoader.getInstance().start();
 		
 		return new HouseApplication(w,h);
