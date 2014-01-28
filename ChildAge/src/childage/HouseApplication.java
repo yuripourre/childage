@@ -50,11 +50,11 @@ public class HouseApplication extends Application{
 		
 		map.addPlayer(youngMan);
 		
-		music = new Music("music.wav");
+		//music = new Music("music.wav");
 		
-		music.play();
+		//music.play();
 
-		updateAtFixedRate(50);
+		updateAtFixedRate(100);
 		
 		loading = 100;
 		
