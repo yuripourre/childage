@@ -169,9 +169,9 @@ public class Map implements Drawable, FornitureListener{
 
 	public void update(long now){
 
-		System.out.println("Now: "+now);
-		System.out.println("Last Wave: "+lastWave);
-		System.out.println("Result: "+now/WAVE_DELAY);
+		//System.out.println("Now: "+now);
+		//System.out.println("Last Wave: "+lastWave);
+		//System.out.println("Result: "+now/WAVE_DELAY);
 
 		if(now>lastWave+WAVE_DELAY){
 
@@ -218,7 +218,12 @@ public class Map implements Drawable, FornitureListener{
 
 		}
 
+		//activeNextWave(now);
 
+	}
+	
+	private void activeNextWave(long now){
+		
 		if(!activeWave){
 			
 			if(monsterKilled==activeMonsters){
@@ -229,7 +234,7 @@ public class Map implements Drawable, FornitureListener{
 
 			}
 		}
-
+		
 	}
 
 	private void createMonster(Window window){
