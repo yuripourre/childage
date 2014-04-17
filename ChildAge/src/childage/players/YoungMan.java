@@ -9,6 +9,8 @@ public class YoungMan extends ChildagePlayer{
 		
 		kind = Kind.CHILD;
 		
+		this.layer.setSpeed(200);
+		
 		dialog = new Dialog(760, 600, 20, "child.png");
 		
 		dialog.getText().setText("I am a child.");

@@ -6,7 +6,7 @@ import br.com.etyllica.layer.StaticLayer;
 import br.com.tide.platform.player.PlayerState;
 import childage.map.Window;
 
-public class Monster extends ChildagePlayer{
+public class Monster extends ChildagePlayer {
 
 	private StaticLayer attack;
 
@@ -43,7 +43,8 @@ public class Monster extends ChildagePlayer{
 
 	@Override
 	public void update(long now){
-
+		super.update(now);
+		
 		if(!targetWindow.isBroken()){
 			
 			reachWindow(now);
@@ -56,8 +57,6 @@ public class Monster extends ChildagePlayer{
 		}
 
 		if(isWalking()){
-
-			walk();
 
 			this.layer.nextFrame();
 		}

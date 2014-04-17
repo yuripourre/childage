@@ -9,6 +9,7 @@ import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.AnimatedLayer;
 import br.com.etyllica.util.SVGColor;
+import br.com.tide.platform.player.PlayerState;
 import childage.forniture.Forniture;
 import childage.forniture.FornitureListener;
 import childage.forniture.Ipod;
@@ -43,7 +44,7 @@ public class Map implements Drawable, FornitureListener{
 
 	private int activeMonsters = 0;
 
-	public Map(){
+	public Map() {
 		super();
 
 		//Left Window
@@ -108,7 +109,7 @@ public class Map implements Drawable, FornitureListener{
 
 	}
 
-	public void draw(Graphic g){
+	public void draw(Graphic g) {
 
 		drawFornitures(g);
 
@@ -121,41 +122,41 @@ public class Map implements Drawable, FornitureListener{
 
 	}
 
-	private void drawMonsters(Graphic g){
+	private void drawMonsters(Graphic g) {
 
-		for(Monster monster: monsters){
+		for(Monster monster: monsters) {
 			monster.draw(g);
 		}
 
 	}
 
-	private void drawFornitures(Graphic g){
+	private void drawFornitures(Graphic g) {
 
 		g.setColor(SVGColor.CRIMSON);
 
-		for(Forniture forniture: fornitures){
+		for(Forniture forniture: fornitures) {
 			forniture.draw(g);
 		}
 
-		for(Forniture forniture: temporaryFornitures){
+		for(Forniture forniture: temporaryFornitures) {
 			forniture.draw(g);
 		}
 
 	}
 
-	private void drawWindows(Graphic g){
+	private void drawWindows(Graphic g) {
 
-		for(Window window: windows){
+		for(Window window: windows) {
 			window.draw(g);
 		}
 
 	}
 
-	private Forniture colide(int bx, int by, int bw, int bh){
+	private Forniture colide(int bx, int by, int bw, int bh) {
 
-		for(Forniture forniture: fornitures){
+		for(Forniture forniture: fornitures) {
 
-			if(forniture.colideRect(bx, by, bw, bh)){
+			if(forniture.colideRect(bx, by, bw, bh)) {
 				return forniture;
 			}
 
@@ -167,17 +168,17 @@ public class Map implements Drawable, FornitureListener{
 
 	private boolean activeWave = true;
 
-	public void update(long now){
+	public void update(long now) {
 
 		//System.out.println("Now: "+now);
 		//System.out.println("Last Wave: "+lastWave);
 		//System.out.println("Result: "+now/WAVE_DELAY);
 
-		if(now>lastWave+WAVE_DELAY){
+		if(now>lastWave+WAVE_DELAY) {
 
-			if(activeWave){
+			if(activeWave) {
 
-				for(Window window: windows){
+				for(Window window: windows) {
 
 					createMonster(window);
 
@@ -190,29 +191,29 @@ public class Map implements Drawable, FornitureListener{
 
 		}
 
-		for(Forniture forniture: fornitures){
+		for(Forniture forniture: fornitures) {
 
 			forniture.update(now);
 
 		}
 
-		for(Monster monster: monsters){
+		for(Monster monster: monsters) {
 
 			monster.update(now);
 
 		}
 
-		for(int i=temporaryFornitures.size()-1;i>=0;i--){
+		for(int i=temporaryFornitures.size()-1;i>=0;i--) {
 
 			TemporaryForniture forniture = temporaryFornitures.get(i);
 
-			for(Monster monster: monsters){
+			for(Monster monster: monsters) {
 
 				monsterColision(monster, forniture);
 
 			}
 
-			if(now>forniture.getDropped()+FORNITURE_DELAY){
+			if(now>forniture.getDropped()+FORNITURE_DELAY) {
 				temporaryFornitures.remove(i);
 			}
 
@@ -222,11 +223,11 @@ public class Map implements Drawable, FornitureListener{
 
 	}
 	
-	private void activeNextWave(long now){
+	private void activeNextWave(long now) {
 		
-		if(!activeWave){
+		if(!activeWave) {
 			
-			if(monsterKilled==activeMonsters){
+			if(monsterKilled==activeMonsters) {
 
 				activeWave = true;
 
@@ -237,11 +238,11 @@ public class Map implements Drawable, FornitureListener{
 		
 	}
 
-	private void createMonster(Window window){
+	private void createMonster(Window window) {
 
 		Random random = new Random();
 
-		if(random.nextInt(10)>1){
+		if(random.nextInt(10)>1) {
 
 		}
 
@@ -256,13 +257,13 @@ public class Map implements Drawable, FornitureListener{
 
 		Forniture forniture = colide(layer.getX(), layer.getY(), layer.getTileW(), layer.getTileH());
 
-		if(forniture!=null){
+		if(forniture!=null) {
 
-			if(player.isAttacking()){
+			if(player.isAttacking()) {
 
 				String text = forniture.use(player);
 
-				if(!text.isEmpty()){
+				if(!text.isEmpty()) {
 
 					player.getDialog().getText().setText(text);
 
@@ -272,11 +273,11 @@ public class Map implements Drawable, FornitureListener{
 
 			player.undoWalk();
 
-		}else{
+		} else {
 
-			if(player.isSpecialAttacking()){
+			if(player.hasState(PlayerState.SPECIAL_ATTACK)) {
 
-				if(player.isCarringItem()){
+				if(player.isCarringItem()) {
 
 					TemporaryForniture carried = player.getCarried();
 
@@ -298,7 +299,7 @@ public class Map implements Drawable, FornitureListener{
 
 	}
 
-	private TemporaryForniture cloneTemporaryForniture(int x, int y, TemporaryForniture forniture){
+	private TemporaryForniture cloneTemporaryForniture(int x, int y, TemporaryForniture forniture) {
 
 		TemporaryForniture clone = new TemporaryForniture(x, y, this, forniture.getPath());
 
@@ -309,7 +310,7 @@ public class Map implements Drawable, FornitureListener{
 	@Override
 	public void listenForniture(Forniture forniture) {
 
-		for(Monster monster: monsters){
+		for(Monster monster: monsters) {
 
 			monsterColision(monster, forniture);
 
@@ -317,11 +318,11 @@ public class Map implements Drawable, FornitureListener{
 
 	}
 
-	private boolean monsterColision(Monster monster, Forniture forniture){
+	private boolean monsterColision(Monster monster, Forniture forniture) {
 
-		if(monster.colideRect(forniture.getRange().getX(), forniture.getRange().getY(), forniture.getRange().getW(), forniture.getRange().getH())){
+		if(monster.getLayer().colideRect(forniture.getRange().getX(), forniture.getRange().getY(), forniture.getRange().getW(), forniture.getRange().getH())) {
 
-			if(monster.getLayer().isVisible()){
+			if(monster.getLayer().isVisible()) {
 
 				monsterKilled++;
 

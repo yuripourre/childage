@@ -26,6 +26,10 @@ public class HouseApplication extends Application{
 	private ImageLayer roof;
 	
 	private Music music;
+	
+	private EasyController easyController;
+	
+	private FirstPlayerController firstPlayerController;
 
 	public HouseApplication(int w, int h) {
 		super(w, h);
@@ -37,11 +41,13 @@ public class HouseApplication extends Application{
 		map = new Map();
 		
 		oldMan = new OldMan(570,340);
-		oldMan.setController(new EasyController());
 		
+		easyController = new EasyController(oldMan);		
+				
 		youngMan = new YoungMan(670,338);
-		youngMan.setController(new FirstPlayerController());
 		
+		firstPlayerController = new FirstPlayerController(youngMan);
+				
 		house = new ImageLayer("house.png");
 		
 		roof = new ImageLayer("roof.png");
@@ -50,7 +56,7 @@ public class HouseApplication extends Application{
 		
 		map.addPlayer(youngMan);
 		
-		//music = new Music("music.wav");
+		//music = new Music("ingame.mp3");
 		
 		//music.play();
 
@@ -113,11 +119,10 @@ public class HouseApplication extends Application{
 	@Override
 	public GUIEvent updateKeyboard(KeyEvent event) {
 		
-		oldMan.handleEvent(event);
+		easyController.handleEvent(event);
 		
-		youngMan.handleEvent(event);
+		firstPlayerController.handleEvent(event);
 		
-		// TODO Auto-generated method stub
 		return null;
 	}		
 
