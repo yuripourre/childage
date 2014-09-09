@@ -1,13 +1,15 @@
 package childage;
 
+import java.awt.Color;
+
 import childage.tiles.Floor;
 import br.com.etyllica.core.Drawable;
-import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.gui.Panel;
 import br.com.etyllica.layer.ImageLayer;
 import br.com.etyllica.layer.TextLayer;
 
-public class Dialog implements Drawable{
+public class Dialog implements Drawable {
 
 	private ImageLayer face;
 	
@@ -26,8 +28,8 @@ public class Dialog implements Drawable{
 		panel.setRoundness(10);
 		
 		text = new TextLayer(panel.getX()+180, panel.getY()+40, "dialog");
-		
 		text.setSize(fontSize);
+		text.setColor(Color.WHITE);
 		
 		face = new ImageLayer(panel.getX()+12,panel.getY()+12, path);
 		face.setW(Floor.TILE_SIZE);

@@ -1,6 +1,6 @@
 package childage.forniture;
 
-import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.core.graphics.Graphic;
 
 public abstract class ComplexForniture extends Forniture{
 

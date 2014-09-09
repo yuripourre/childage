@@ -20,6 +20,8 @@ public class Childage extends EtyllicaFrame {
 	@Override
 	public Application startApplication() {
 		
+		setPath(Childage.class.getResource("")+"../");
+		
 		addLoader(MultimediaLoader.getInstance());
 		
 		//addLoader(JoystickLoader.getInstance());

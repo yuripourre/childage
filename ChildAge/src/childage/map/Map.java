@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Random;
 
 import br.com.etyllica.core.Drawable;
-import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.SVGColor;
 import br.com.etyllica.layer.AnimatedLayer;
-import br.com.etyllica.util.SVGColor;
-import br.com.tide.platform.player.PlayerState;
+import br.com.tide.PlayerState;
 import childage.forniture.Forniture;
 import childage.forniture.FornitureListener;
 import childage.forniture.Ipod;

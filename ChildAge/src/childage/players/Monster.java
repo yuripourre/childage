@@ -3,7 +3,7 @@ package childage.players;
 import java.util.List;
 
 import br.com.etyllica.layer.StaticLayer;
-import br.com.tide.platform.player.PlayerState;
+import br.com.tide.PlayerState;
 import childage.map.Window;
 
 public class Monster extends ChildagePlayer {
@@ -209,7 +209,7 @@ public class Monster extends ChildagePlayer {
 
 		if(goUp){
 			walkUp();
-		}else if(state.contains(PlayerState.WALK_UP)){
+		}else if(states.contains(PlayerState.WALK_UP)){
 			stopWalkUp();
 		}
 
@@ -219,7 +219,7 @@ public class Monster extends ChildagePlayer {
 
 		if(goDown){
 			walkDown();
-		}else if(state.contains(PlayerState.WALK_DOWN)){
+		}else if(states.contains(PlayerState.WALK_DOWN)){
 			stopWalkDown();
 		}
 
@@ -229,7 +229,7 @@ public class Monster extends ChildagePlayer {
 
 		if(goLeft){
 			walkLeft();
-		}else if(state.contains(PlayerState.WALK_LEFT)){
+		}else if(states.contains(PlayerState.WALK_LEFT)){
 			stopWalkLeft();
 		}
 
@@ -239,7 +239,7 @@ public class Monster extends ChildagePlayer {
 
 		if(goRight){
 			walkRight();
-		}else if(state.contains(PlayerState.WALK_RIGHT)){
+		}else if(states.contains(PlayerState.WALK_RIGHT)){
 			stopWalkRight();
 		}
 

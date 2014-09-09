@@ -5,8 +5,8 @@ import br.com.etyllica.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
+import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.core.input.mouse.MouseButton;
-import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.ImageLayer;
 
 public class MainMenu extends Application{
@@ -20,7 +20,7 @@ public class MainMenu extends Application{
 	@Override
 	public GUIEvent updateMouse(PointerEvent event) {
 		
-		if(event.onButtonDown(MouseButton.MOUSE_BUTTON_LEFT)){
+		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_LEFT)){
 			this.returnApplication = new HouseApplication(w, h);
 		}
 		

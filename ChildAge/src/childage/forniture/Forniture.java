@@ -3,10 +3,10 @@ package childage.forniture;
 import java.awt.Color;
 
 import br.com.etyllica.core.Drawable;
-import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.SVGColor;
 import br.com.etyllica.layer.GeometricLayer;
 import br.com.etyllica.layer.ImageLayer;
-import br.com.etyllica.util.SVGColor;
 import childage.players.ChildagePlayer;
 import childage.tiles.Floor;
 

@@ -3,18 +3,19 @@ package childage.players;
 import java.awt.Color;
 
 import br.com.etyllica.core.Drawable;
-import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.SVGColor;
 import br.com.etyllica.layer.AnimatedLayer;
-import br.com.etyllica.util.SVGColor;
-import br.com.tide.platform.player.Player;
-import br.com.tide.platform.player.PlayerState;
+import br.com.tide.PlayerState;
+import br.com.tide.platform.player.PlatformPlayer;
+import br.com.tide.platform.player.PlatformPlayerListener;
 import childage.Dialog;
 import childage.forniture.Forniture;
 import childage.forniture.TemporaryForniture;
 import childage.map.Map;
 import childage.tiles.Floor;
 
-public class ChildagePlayer extends Player implements Drawable {
+public class ChildagePlayer extends PlatformPlayer implements Drawable, PlatformPlayerListener {
 
 	protected Kind kind = Kind.CHILD;
 
@@ -43,6 +44,7 @@ public class ChildagePlayer extends Player implements Drawable {
 
 		layer.setFrames(3);
 
+		listener = this;
 	}
 
 	@Override
@@ -65,15 +67,15 @@ public class ChildagePlayer extends Player implements Drawable {
 
 	private void walk(){
 
-		if(state.contains(PlayerState.WALK_RIGHT)){
+		if(states.contains(PlayerState.WALK_RIGHT)){
 			this.layer.setOffsetX(walkSpeed);
-		}else if(state.contains(PlayerState.WALK_LEFT)){
+		}else if(states.contains(PlayerState.WALK_LEFT)){
 			this.layer.setOffsetX(-walkSpeed);
 		}
 
-		if(state.contains(PlayerState.WALK_DOWN)){
+		if(states.contains(PlayerState.WALK_DOWN)){
 			this.layer.setOffsetY(walkSpeed);
-		}else if(state.contains(PlayerState.WALK_UP)){
+		}else if(states.contains(PlayerState.WALK_UP)){
 			this.layer.setOffsetY(-walkSpeed);
 		}
 	}
@@ -136,7 +138,7 @@ public class ChildagePlayer extends Player implements Drawable {
 	@Override
 	public void onWalkUp(){
 
-		if(!state.contains(PlayerState.WALK_RIGHT)&&!state.contains(PlayerState.WALK_LEFT)){
+		if(!states.contains(PlayerState.WALK_RIGHT)&&!states.contains(PlayerState.WALK_LEFT)){
 			layer.setYImage(layer.getTileH()*3);
 		}
 
@@ -145,7 +147,7 @@ public class ChildagePlayer extends Player implements Drawable {
 	@Override
 	public void onWalkDown(){
 
-		if(!state.contains(PlayerState.WALK_RIGHT)&&!state.contains(PlayerState.WALK_LEFT)){
+		if(!states.contains(PlayerState.WALK_RIGHT)&&!states.contains(PlayerState.WALK_LEFT)){
 			layer.setYImage(layer.getTileH()*0);
 		}
 
@@ -154,11 +156,11 @@ public class ChildagePlayer extends Player implements Drawable {
 	@Override
 	public void onStopWalkRight(){
 
-		if(state.contains(PlayerState.WALK_UP)){
+		if(states.contains(PlayerState.WALK_UP)){
 			onWalkUp();
 		}
 
-		if(state.contains(PlayerState.WALK_DOWN)){
+		if(states.contains(PlayerState.WALK_DOWN)){
 			onWalkDown();
 		}
 
@@ -171,7 +173,7 @@ public class ChildagePlayer extends Player implements Drawable {
 
 	@Override
 	public void attack(){
-		state.add(PlayerState.ATTACK);
+		states.add(PlayerState.ATTACK);
 		onAttack();
 	}
 
@@ -189,15 +191,15 @@ public class ChildagePlayer extends Player implements Drawable {
 
 		int walkSpeed = -this.walkSpeed;
 
-		if(state.contains(PlayerState.WALK_RIGHT)){
+		if(states.contains(PlayerState.WALK_RIGHT)){
 			this.layer.setOffsetX(walkSpeed);
-		}else if(state.contains(PlayerState.WALK_LEFT)){
+		}else if(states.contains(PlayerState.WALK_LEFT)){
 			this.layer.setOffsetX(-walkSpeed);
 		}
 
-		if(state.contains(PlayerState.WALK_DOWN)){
+		if(states.contains(PlayerState.WALK_DOWN)){
 			this.layer.setOffsetY(walkSpeed);
-		}else if(state.contains(PlayerState.WALK_UP)){
+		}else if(states.contains(PlayerState.WALK_UP)){
 			this.layer.setOffsetY(-walkSpeed);
 		}
 
@@ -236,6 +238,18 @@ public class ChildagePlayer extends Player implements Drawable {
 	public void dropItem() {
 		carried = null;
 		this.dialog.hideCarryItem();
+	}
+
+	@Override
+	public void onStopWalkUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkDown() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,6 +1,6 @@
 package childage.house;
 
-import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.core.graphics.Graphic;
 import childage.forniture.Forniture;
 import childage.players.ChildagePlayer;
 
