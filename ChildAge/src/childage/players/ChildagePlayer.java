@@ -7,15 +7,15 @@ import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.core.graphics.SVGColor;
 import br.com.etyllica.layer.AnimatedLayer;
 import br.com.tide.PlayerState;
-import br.com.tide.platform.player.PlatformPlayer;
-import br.com.tide.platform.player.PlatformPlayerListener;
+import br.com.tide.arcade.player.ArcadePlayer;
+import br.com.tide.arcade.player.ArcadePlayerListener;
 import childage.Dialog;
 import childage.forniture.Forniture;
 import childage.forniture.TemporaryForniture;
 import childage.map.Map;
 import childage.tiles.Floor;
 
-public class ChildagePlayer extends PlatformPlayer implements Drawable, PlatformPlayerListener {
+public class ChildagePlayer extends ArcadePlayer implements Drawable, ArcadePlayerListener {
 
 	protected Kind kind = Kind.CHILD;
 

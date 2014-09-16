@@ -21,7 +21,7 @@ public class MainMenu extends Application{
 	public GUIEvent updateMouse(PointerEvent event) {
 		
 		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_LEFT)){
-			this.returnApplication = new HouseApplication(w, h);
+			this.nextApplication = new HouseApplication(w, h);
 		}
 		
 		// TODO Auto-generated method stub
@@ -32,7 +32,7 @@ public class MainMenu extends Application{
 	public GUIEvent updateKeyboard(KeyEvent event) {
 		
 		if(event.isKeyDown(KeyEvent.TSK_ENTER)){
-			this.returnApplication = new HouseApplication(w, h);
+			this.nextApplication = new HouseApplication(w, h);
 		}
 		
 		// TODO Auto-generated method stub
